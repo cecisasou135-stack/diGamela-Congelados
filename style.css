@@ -1,0 +1,211 @@
+/* ============================================================
+   diGamela — Linktree Page · style.css
+   Paleta: bege/creme, marrom escuro, verde-escuro, dourado
+   ============================================================ */
+
+/* ---------- variáveis de cores ---------- */
+:root {
+  --bg:          #f2ead8;        /* bege creme (fundo) */
+  --bg-card:     #faf6ed;        /* creme mais claro (card) */
+  --brown-dark:  #6b1f1f;        /* marrom escuro (títulos) */
+  --brown-mid:   #8b3a1a;        /* marrom médio */
+  --green-dark:  #1d4a35;        /* verde escuro (bordas / detalhes) */
+  --gold:        #c8860a;        /* dourado (sol / detalhe) */
+  --text:        #3a2010;        /* texto principal */
+  --text-muted:  #7a5c3a;        /* texto suave */
+  --btn-border:  #5a3010;        /* borda dos botões */
+  --btn-hover-bg:#f0e2c4;        /* fundo hover botão */
+  --shadow:      rgba(80, 30, 0, 0.12);
+}
+
+/* ---------- reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+}
+
+/* ---------- textura de fundo ---------- */
+.bg-texture {
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,134,10,.12) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23f2ead8'/%3E%3Ccircle cx='1' cy='1' r='.5' fill='%23d4b88a' opacity='.25'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- card central ---------- */
+.page { position: relative; z-index: 1; width: 100%; max-width: 480px; }
+
+.card {
+  background: var(--bg-card);
+  border-radius: 24px;
+  border: 1.5px solid rgba(107,31,31,.15);
+  box-shadow: 0 8px 40px var(--shadow);
+  padding: 2.8rem 2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  animation: fadeUp .6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- área da logo ---------- */
+.logo-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.logo-img {
+  width: min(320px, 85vw);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  animation: fadeUp .7s .1s ease both;
+}
+
+/* placeholder quando a logo ainda não foi colocada */
+.logo-placeholder {
+  display: none;           /* escondido por padrão; JS mostra se imagem falhar */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2.5px dashed var(--brown-mid);
+  color: var(--text-muted);
+  font-size: .85rem;
+  text-align: center;
+  gap: .4rem;
+  padding: 1rem;
+  background: rgba(200,134,10,.06);
+}
+.logo-placeholder code {
+  font-size: .78rem;
+  background: rgba(107,31,31,.08);
+  padding: .1em .4em;
+  border-radius: 4px;
+}
+
+/* ---------- slogan ---------- */
+.slogan {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--brown-mid);
+  letter-spacing: .04em;
+  margin-bottom: 2.2rem;
+  text-align: center;
+  animation: fadeUp .7s .2s ease both;
+}
+
+/* ---------- lista de botões ---------- */
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+}
+
+/* ---------- botão individual ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  padding: 1rem 1.4rem;
+  border-radius: 50px;               /* pílula, igual à referência */
+  border: 2px solid var(--btn-border);
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background .22s ease,
+    border-color .22s ease,
+    transform .18s ease,
+    box-shadow .22s ease;
+  animation: fadeUp .7s calc(.3s + var(--i, 0) * .1s) ease both;
+}
+
+/* animação escalonada para cada botão */
+.links .btn:nth-child(1) { --i: 0; }
+.links .btn:nth-child(2) { --i: 1; }
+.links .btn:nth-child(3) { --i: 2; }
+.links .btn:nth-child(4) { --i: 3; }
+.links .btn:nth-child(5) { --i: 4; }
+
+.btn-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.btn-text {
+  flex: 1;
+  text-align: center;
+}
+
+.btn-arrow {
+  font-size: 1.4rem;
+  color: var(--brown-mid);
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .2s, transform .2s;
+}
+
+/* hover & active */
+.btn:hover {
+  background: var(--btn-hover-bg);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(107,31,31,.14);
+}
+.btn:hover .btn-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+.btn:active {
+  transform: translateY(0) scale(.98);
+  box-shadow: none;
+}
+
+/* ---------- rodapé ---------- */
+.footer {
+  margin-top: 2rem;
+  font-size: .78rem;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: .04em;
+  animation: fadeUp .7s .7s ease both;
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 400px) {
+  .card { padding: 2rem 1.2rem 1.8rem; }
+  .btn  { font-size: .92rem; padding: .85rem 1rem; }
+}
